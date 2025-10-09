@@ -70,6 +70,7 @@ pub fn main() !void {
                     digit_count += 1;
                     if (first_list == true) {
                         var keyIt = map.keyIterator();
+                        //i think there is a problem with the key keyIterator as it doesnt look like it is getting the right keys
                         while (keyIt.next()) |key| {
                             var key_int: u32 = try std.fmt.parseInt(u32, key.*, 10);
                             switch (digit_count) {

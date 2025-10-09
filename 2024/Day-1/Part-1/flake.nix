@@ -13,8 +13,11 @@
           overlays = [ zig-overlay.overlays.default ];
         };
 
-        # Choose a Zig version available in zig-overlay. See repo for available versions.
-        zig = pkgs.zigpkgs."0.15.1"; 
+        zig = pkgs.zigpkgs."0.15.1";
+
+        zls = pkgs.zls.overrideAttrs (old: {
+          nativeBuildInputs = (old.nativeBuildInputs or []) ++ [ zig ];
+        });
       in {
         packages.default = pkgs.stdenv.mkDerivation {
           src = ./.;
@@ -30,7 +33,7 @@
         };
 
         devShells.default = pkgs.mkShell {
-          packages = [ zig ];
+          packages = [ zig zls ];
 
           shellHook = ''
             # Check we're not already in zsh to avoid infinite loop
