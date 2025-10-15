@@ -72,11 +72,11 @@ pub fn main() !void {
                         while (keyIt.next()) |key| {
                             var key_int: u32 = try std.fmt.parseInt(u32, key.*, 10);
                             switch (digit_count) {
-                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); },
-                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); },
-                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); },
-                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); },
-                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); },
+                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
                                 else => {
                                     print("digit_count = {d}\n", .{digit_count});
                                 }
@@ -94,11 +94,11 @@ pub fn main() !void {
                         while (keyIt.next()) |key| {
                             var key_int: u32 = try std.fmt.parseInt(u32, key.*, 10);
                             switch (digit_count) {
-                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); },
-                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); },
-                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); },
-                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); },
-                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); },
+                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
                                 else => {
                                     print("digit_count = {d}\n", .{digit_count});
                                 }
@@ -116,11 +116,11 @@ pub fn main() !void {
                         while (keyIt.next()) |key| {
                             var key_int: u32 = try std.fmt.parseInt(u32, key.*, 10);
                             switch (digit_count) {
-                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); },
-                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); },
-                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); },
-                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); },
-                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); },
+                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
                                 else => {
                                     print("digit_count = {d}\n", .{digit_count});
                                 }
@@ -138,11 +138,11 @@ pub fn main() !void {
                         while (keyIt.next()) |key| {
                             var key_int: u32 = try std.fmt.parseInt(u32, key.*, 10);
                             switch (digit_count) {
-                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); },
-                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); },
-                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); },
-                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); },
-                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); },
+                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
                                 else => {
                                     print("digit_count = {d}\n", .{digit_count});
                                 }
@@ -161,11 +161,11 @@ pub fn main() !void {
                         while (keyIt.next()) |key| {
                             var key_int: u32 = try std.fmt.parseInt(u32, key.*, 10);
                             switch (digit_count) {
-                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); },
-                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); },
-                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); },
-                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); },
-                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); },
+                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
                                 else => {
                                     print("digit_count = {d}\n", .{digit_count});
                                 }
@@ -183,11 +183,11 @@ pub fn main() !void {
                         while (keyIt.next()) |key| {
                             var key_int: u32 = try std.fmt.parseInt(u32, key.*, 10);
                             switch (digit_count) {
-                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); },
-                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); },
-                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); },
-                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); },
-                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); },
+                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
                                 else => {
                                     print("digit_count = {d}\n", .{digit_count});
                                 }
@@ -205,11 +205,11 @@ pub fn main() !void {
                         while (keyIt.next()) |key| {
                             var key_int: u32 = try std.fmt.parseInt(u32, key.*, 10);
                             switch (digit_count) {
-                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); },
-                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); },
-                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); },
-                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); },
-                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); },
+                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
                                 else => {
                                     print("digit_count = {d}\n", .{digit_count});
                                 }
@@ -227,11 +227,11 @@ pub fn main() !void {
                         while (keyIt.next()) |key| {
                             var key_int: u32 = try std.fmt.parseInt(u32, key.*, 10);
                             switch (digit_count) {
-                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); },
-                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); },
-                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); },
-                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); },
-                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); },
+                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
                                 else => {
                                     print("digit_count = {d}\n", .{digit_count});
                                 }
@@ -249,11 +249,11 @@ pub fn main() !void {
                         while (keyIt.next()) |key| {
                             var key_int: u32 = try std.fmt.parseInt(u32, key.*, 10);
                             switch (digit_count) {
-                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); },
-                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); },
-                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); },
-                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); },
-                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); },
+                                1 => { key_int *= 10000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                2 => { key_int *= 1000; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                3 => { key_int *= 100; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                4 => { key_int *= 10; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
+                                5 => { key_int *= 1; print("key_int = {d}\n", .{key_int}); print("digit_count = {d}\n", .{digit_count}); },
                                 else => {
                                     print("digit_count = {d}\n", .{digit_count});
                                 }
