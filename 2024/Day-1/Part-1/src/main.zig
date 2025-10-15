@@ -59,14 +59,12 @@ pub fn main() !void {
                         first_list = false;
                     } 
                     digit_count = 0;
-                }
-                if (std.mem.eql(u8, word, "newline")) {
+                } else if (std.mem.eql(u8, word, "newline")) {
                     if (second_list == true) {
                         second_list = false;
                     } 
                     digit_count = 0;
-                }
-                if (std.mem.eql(u8, word, "one")) {
+                } else if (std.mem.eql(u8, word, "one")) {
                     digit_count += 1;
                     if (first_list == true) {
                         var keyIt = map.keyIterator();
@@ -89,8 +87,7 @@ pub fn main() !void {
                         second_list = true;
                         //add the number to the index notation
                     }
-                }
-                if (std.mem.eql(u8, word, "two")) {
+                } else if (std.mem.eql(u8, word, "two")) {
                     digit_count += 1;
                     if (first_list == true) {
                         var keyIt = map.keyIterator();
@@ -112,8 +109,7 @@ pub fn main() !void {
                         second_list = true;
                         //add the number to the index notation
                     }
-                }
-                if (std.mem.eql(u8, word, "three")) {
+                } else if (std.mem.eql(u8, word, "three")) {
                     digit_count += 1;
                     if (first_list == true) {
                         var keyIt = map.keyIterator();
@@ -135,8 +131,7 @@ pub fn main() !void {
                         second_list = true;
                         //add the number to the index notation
                     }
-                }
-                if (std.mem.eql(u8, word, "four")) {
+                } else if (std.mem.eql(u8, word, "four")) {
                     digit_count += 1;
                     if (first_list == true) {
                         var keyIt = map.keyIterator();
@@ -158,8 +153,7 @@ pub fn main() !void {
                         second_list = true;
                         //add the number to the index notation
                     }
-                }
-                if (std.mem.eql(u8, word, "five")) {
+                } else if (std.mem.eql(u8, word, "five")) {
 
                     digit_count += 1;
                     if (first_list == true) {
@@ -182,8 +176,7 @@ pub fn main() !void {
                         second_list = true;
                         //add the number to the index notation
                     }
-                }
-                if (std.mem.eql(u8, word, "six")) {
+                } else if (std.mem.eql(u8, word, "six")) {
                     digit_count += 1;
                     if (first_list == true) {
                         var keyIt = map.keyIterator();
@@ -205,8 +198,7 @@ pub fn main() !void {
                         second_list = true;
                         //add the number to the index notation
                     }
-                }
-                if (std.mem.eql(u8, word, "seven")) {
+                } else if (std.mem.eql(u8, word, "seven")) {
                     digit_count += 1;
                     if (first_list == true) {
                         var keyIt = map.keyIterator();
@@ -228,8 +220,7 @@ pub fn main() !void {
                         second_list = true;
                         //add the number to the index notation
                     }
-                }
-                if (std.mem.eql(u8, word, "eight")) {
+                } else if (std.mem.eql(u8, word, "eight")) {
                     digit_count += 1;
                     if (first_list == true) {
                         var keyIt = map.keyIterator();
@@ -251,8 +242,7 @@ pub fn main() !void {
                         second_list = true;
                         //add the number to the index notation
                     }
-                }
-                if (std.mem.eql(u8, word, "nine")) {
+                } else if (std.mem.eql(u8, word, "nine")) {
                     digit_count += 1;
                     if (first_list == true) {
                         var keyIt = map.keyIterator();
@@ -274,9 +264,11 @@ pub fn main() !void {
                         second_list = true;
                         //add the number to the index notation
                     }
+                } else {
+                    print("word is not found in map, word = {s}", .{word});
                 }
             } else {
-                 print("could not find key, seq1 = {d}", .{seq1});
+                 print("could not find key, seq1 = {s}", .{seq1});
             }
         }
         print("newline\n", .{});
