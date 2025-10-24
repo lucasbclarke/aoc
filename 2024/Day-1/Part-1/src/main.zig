@@ -4,7 +4,7 @@ const embedfile = @embedFile("s");
 
 var first_list: bool = undefined;
 var second_list: bool = undefined;
-var running_total: u32 = 0;
+var running_total: u32 = 1;
 
 pub fn main() !void {
     var lines = std.mem.splitAny(u8, embedfile, "\n");
@@ -24,9 +24,12 @@ pub fn main() !void {
                 } 
                 running_total = 0;
             } else if (seq1 >= '0' and seq1 <= '9') {
+                print("seq1 within if statement = {c}\n", .{seq1});
+                print("running_total before multiplication = {d}\n", .{running_total});
                 running_total *= 10;
+                print("running_total before adition = {d}\n", .{running_total});
                 running_total += seq1 - 48;
-                print("running_total = {d}\n", .{running_total});
+                print("running_total after adition = {d}\n", .{running_total});
             }
         }
         print("newline\n", .{});
