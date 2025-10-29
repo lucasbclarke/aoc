@@ -1,6 +1,6 @@
 const std = @import("std");
 const print = @import("std").debug.print;
-const embedfile = @embedFile("s");
+const embedfile = @embedFile("w");
 
 var first_list: bool = undefined;
 var second_list: bool = undefined;
@@ -13,12 +13,14 @@ pub fn main() !void {
             print("seq1 = {c}\n", .{seq1});
             if (seq1 == ' ') {
                 //print("running_total = {d}\n", .{running_total});
+                print("seq1 = space\n", .{});
                 if (first_list == true) {
                     first_list = false;
                 } 
                 running_total = 0;
             } else if (seq1 == '\n') {
                 //print("running_total = {d}\n", .{running_total});
+                print("seq1 = newline\n", .{});
                 if (second_list == true) {
                     second_list = false;
                 } 
