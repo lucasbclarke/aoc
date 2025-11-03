@@ -1,6 +1,9 @@
 const std = @import("std");
 const print = @import("std").debug.print;
-const embedfile = @embedFile("w");
+
+var buffer: u8[1000] = undefined;
+const writer = std.io.Writer();
+const reader = std.io.Reader.streamDelimiter();
 
 var first_list: bool = undefined;
 var second_list: bool = undefined;
