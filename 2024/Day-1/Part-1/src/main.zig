@@ -5,6 +5,7 @@ var first_list: bool = true;
 var second_list: bool = undefined;
 var running_total: u32 = 1;
 
+const arr_list = std.ArrayList(u32);
 
 pub fn main() !void {
     var file_buffer: [40]u8 = undefined;
@@ -15,22 +16,28 @@ pub fn main() !void {
         if (char == ' ') {
             if (first_list == true) {
                 first_list = false;
+                second_list = true;
             }
-            print("first_list after space = {}\n", .{first_list});
-            print("second_list after space = {}\n", .{second_list});
+            running_total = 0;
         } else if (char == '\n') {
             if (second_list == true) {
                 second_list = false;
-            }
-            print("first_list after newline = {}\n", .{first_list});
-            print("second_list after newline = {}\n", .{second_list});
+            } 
+            running_total = 0;
         } else if (char >= '0' and char <= '9') {
-            print("first_list after char = {}\n", .{first_list});
-            print("second_list after char = {}\n", .{second_list});
+            if (first_list == false and second_list == false) {
+                first_list = true;
+            }
+            print("running_total before multiplication = {d}\n", .{running_total});
+            running_total *= 10;
+            print("running_total before adition = {d}\n", .{running_total});
+            running_total += char - 48;
+            print("running_total after adition = {d}\n", .{running_total});
+            arr_list.append(std.heap.GeneralPurposeAllocator(.{}), running_total);
+            print("arry_list = {}", .{arr_list});
         }
-        second_list = false;
-        first_list = true;
     }
+    running_total = 0;
     //var lines = std.mem.splitAny(u8, embedfile, "\n");
     //while (lines.next()) |line| {
     //    for (line) |seq1| {
@@ -64,4 +71,5 @@ pub fn main() !void {
 
     //    running_total = 0;
     //}
+    
 }
