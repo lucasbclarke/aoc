@@ -5,9 +5,11 @@ var first_list: bool = true;
 var second_list: bool = undefined;
 var running_total: u32 = 1;
 
-const arr_list = std.ArrayList(u32);
-
 pub fn main() !void {
+    const allocator = std.heap.page_allocator;
+    var arr_list: std.ArrayList(u32) = .empty;
+    defer arr_list.deinit(allocator);
+
     var file_buffer: [40]u8 = undefined;
     const file_reader = try std.fs.File.read(try std.fs.cwd().openFile("s", .{}), &file_buffer);
     _ = file_reader;
@@ -33,8 +35,8 @@ pub fn main() !void {
             print("running_total before adition = {d}\n", .{running_total});
             running_total += char - 48;
             print("running_total after adition = {d}\n", .{running_total});
-            arr_list.append(std.heap.GeneralPurposeAllocator(.{}), running_total);
-            print("arry_list = {}", .{arr_list});
+            try arr_list.append(allocator, running_total);
+            print("arry_list = {any}\n", .{arr_list.items});
         }
     }
     running_total = 0;
