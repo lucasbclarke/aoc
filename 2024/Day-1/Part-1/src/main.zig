@@ -3,7 +3,7 @@ const print = @import("std").debug.print;
 
 var first_list: bool = true;
 var second_list: bool = undefined;
-var running_total: u32 = 1;
+var running_total: u32 = 0;
 
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
@@ -37,41 +37,19 @@ pub fn main() !void {
             print("running_total after adition = {d}\n", .{running_total});
             try arr_list.append(allocator, running_total);
             print("arry_list = {any}\n", .{arr_list.items});
+            
+            var index: usize = 0;
+            while (index < arr_list.capacity) {
+                print("index = {}\n", .{index});
+                if (index % 3 == 0) {
+                    if (index > 1) {
+                        _ = arr_list.orderedRemove(index - 1);
+                        _ = arr_list.orderedRemove(index - 2);
+                    }
+                }
+                index += 1;
+            }
         }
     }
     running_total = 0;
-    //var lines = std.mem.splitAny(u8, embedfile, "\n");
-    //while (lines.next()) |line| {
-    //    for (line) |seq1| {
-    //        print("seq1 = {c}\n", .{seq1});
-    //        if (seq1 == ' ') {
-    //            //print("running_total = {d}\n", .{running_total});
-    //            print("seq1 = space\n", .{});
-    //            if (first_list == true) {
-    //                first_list = false;
-    //            } 
-    //            running_total = 0;
-    //        } else if (seq1 == '\n') {
-    //            //print("running_total = {d}\n", .{running_total});
-    //            print("seq1 = newline\n", .{});
-    //            if (second_list == true) {
-    //                second_list = false;
-    //            } 
-    //            running_total = 0;
-    //        } else if (seq1 >= '0' and seq1 <= '9') {
-    //            print("seq1 within if statement = {c}\n", .{seq1});
-    //            print("running_total before multiplication = {d}\n", .{running_total});
-    //            running_total *= 10;
-    //            print("running_total before adition = {d}\n", .{running_total});
-    //            running_total += seq1 - 48;
-    //            print("running_total after adition = {d}\n", .{running_total});
-    //        }
-    //    }
-    //    print("newline\n", .{});
-    //    second_list = false;
-    //    first_list = true;
-
-    //    running_total = 0;
-    //}
-    
 }
