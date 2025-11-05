@@ -37,17 +37,17 @@ pub fn main() !void {
             print("running_total after adition = {d}\n", .{running_total});
             try arr_list.append(allocator, running_total);
             print("arry_list = {any}\n", .{arr_list.items});
-            
-            var index: usize = 0;
-            while (index < arr_list.capacity) {
-                print("index = {}\n", .{index});
-                if (index % 3 == 0) {
-                    if (index > 1) {
-                        _ = arr_list.orderedRemove(index - 1);
-                        _ = arr_list.orderedRemove(index - 2);
+
+            var i: u32 = 0;
+            for (arr_list.items) |item| {
+                print("item = {}\n", .{item});
+                i += 1;
+                print("i = {}\n", .{i});
+                if (i % 3 == 0) {
+                    if (item / 10 < 10) {
+                        _ = arr_list.orderedRemove(i);
                     }
                 }
-                index += 1;
             }
         }
     }
