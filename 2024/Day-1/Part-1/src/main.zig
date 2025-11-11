@@ -20,35 +20,28 @@ pub fn main() !void {
                 first_list = false;
                 second_list = true;
             }
+            if (running_total > 0) {
+                try arr_list.append(allocator, running_total);
+                print("arry_list = {any}\n", .{arr_list.items});
+            }
             running_total = 0;
         } else if (char == '\n') {
             if (second_list == true) {
                 second_list = false;
+            }
+            if (running_total > 0) {
+                try arr_list.append(allocator, running_total);
+                print("arry_list = {any}\n", .{arr_list.items});
             }
             running_total = 0;
         } else if (char >= '0' and char <= '9') {
             if (first_list == false and second_list == false) {
                 first_list = true;
             }
-            print("running_total before multiplication = {d}\n", .{running_total});
             running_total *= 10;
-            print("running_total before adition = {d}\n", .{running_total});
             running_total += char - 48;
-            print("running_total after adition = {d}\n", .{running_total});
-            try arr_list.append(allocator, running_total);
-            print("arry_list = {any}\n", .{arr_list.items});
-
-            //var i: u32 = 0;
-            //for (arr_list.items) |item| {
-            //    print("item = {}\n", .{item});
-            //    i += 1;
-            //    print("i = {}\n", .{i});
-            //    if (i % 3 == 0) {
-            //        if (item / 10 < 10) {
-            //            _ = arr_list.orderedRemove(i);
-            //        }
-            //    }
-            //}
+            print("first list = {}\n", .{first_list});
+            print("second list = {}\n", .{second_list});
         }
     }
     running_total = 0;
