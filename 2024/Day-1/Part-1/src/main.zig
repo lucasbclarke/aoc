@@ -24,7 +24,7 @@ pub fn main() !void {
         } else if (char == '\n') {
             if (second_list == true) {
                 second_list = false;
-            } 
+            }
             running_total = 0;
         } else if (char >= '0' and char <= '9') {
             if (first_list == false and second_list == false) {
@@ -38,17 +38,17 @@ pub fn main() !void {
             try arr_list.append(allocator, running_total);
             print("arry_list = {any}\n", .{arr_list.items});
 
-            var i: u32 = 0;
-            for (arr_list.items) |item| {
-                print("item = {}\n", .{item});
-                i += 1;
-                print("i = {}\n", .{i});
-                if (i % 3 == 0) {
-                    if (item / 10 < 10) {
-                        _ = arr_list.orderedRemove(i);
-                    }
-                }
-            }
+            //var i: u32 = 0;
+            //for (arr_list.items) |item| {
+            //    print("item = {}\n", .{item});
+            //    i += 1;
+            //    print("i = {}\n", .{i});
+            //    if (i % 3 == 0) {
+            //        if (item / 10 < 10) {
+            //            _ = arr_list.orderedRemove(i);
+            //        }
+            //    }
+            //}
         }
     }
     running_total = 0;
