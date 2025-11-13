@@ -3,10 +3,12 @@ const print = @import("std").debug.print;
 
 var running_total: u32 = 0;
 var report: u32 = 1;
+var safe_report: bool = false;
 
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
     var arr_list: std.ArrayList(u32) = .empty;
+    var safe_reports: std.ArrayList(u32) = .empty;
     defer arr_list.deinit(allocator);
 
     var file_buffer: [50]u8 = undefined; //change to 15,000 on final run
@@ -27,10 +29,19 @@ pub fn main() !void {
             }
             running_total = 0;
             report += 1;
-            print("report number = {}\n", .{report});
+            
+            if (safe_report) {
+                try safe_reports.append(allocator, report);
+            }
         } else if (char >= '0' and char <= '9') {
             running_total *= 10;
             running_total += char - 48;
+            //need to work out how to find the previous number
+            //check if increased or decreased from the previous number
+            //check if difference is between 1 and 3
+            //if both conditions return true then mark as a safe report
+            print("running total = {}\n", .{running_total});
+
         }
     }
     
