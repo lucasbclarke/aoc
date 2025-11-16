@@ -10,7 +10,7 @@ pub fn main() !void {
     const allocator = std.heap.page_allocator;
     var arr_list: std.ArrayList(u32) = .empty;
     var safe_reports: std.ArrayList(u32) = .empty;
-    var all_numbers: std.ArrayList(u32) = .empty;
+    var prev_numbers: std.ArrayList(u32) = .empty;
     defer arr_list.deinit(allocator);
 
     var file_buffer: [50]u8 = undefined; //change to 15,000 on final run
@@ -38,14 +38,21 @@ pub fn main() !void {
         } else if (char >= '0' and char <= '9') {
             running_total *= 10;
             running_total += char - 48;
-            try all_numbers.append(allocator, running_total);
-            //need to work out how to find the previous number
-            //check if increased or decreased from the previous number
+            try prev_numbers.append(allocator, running_total);
             //check if difference is between 1 and 3
             //if both conditions return true then mark as a safe report
-            print("running total = {}\n", .{running_total});
-            if ((number_index - 1) > 0) {
-                print("all numbers = {any}\n", .{all_numbers.items[number_index - 1]});
+            //print("running total = {}\n", .{running_total});
+            if (number_index > 0) {
+                const prev_number = prev_numbers.items[number_index - 1];
+                print("previous numbers = {any}\n", .{prev_number});
+                
+                if (prev_number < running_total or prev_number > running_total) {
+                    if (prev_number + 3 == running_total or prev_number + 2 == running_total or prev_number + 1 == running_total) {
+                        print("safe increse\n", .{});
+                    } else if (prev_number - 2 == running_total or prev_number - 1 == running_total) {
+                        print("safe decrease\n", .{});
+                    }
+                } 
             }
             number_index += 1;
         }
