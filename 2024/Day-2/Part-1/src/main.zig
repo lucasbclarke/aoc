@@ -49,14 +49,23 @@ pub fn main() !void {
                 if (prev_number < running_total or prev_number > running_total) {
                     if (prev_number + 3 == running_total or prev_number + 2 == running_total or prev_number + 1 == running_total) {
                         print("safe increse\n", .{});
-                    } else if (prev_number - 2 == running_total or prev_number - 1 == running_total) {
+                        safe_report = true;
+                    } else if ((prev_number > 3 and prev_number - 3 == running_total) or prev_number - 2 == running_total or prev_number - 1 == running_total) {
                         print("safe decrease\n", .{});
+                        safe_report = true;
+                    } else {
+                        safe_report = false;
                     }
-                } 
+                } else {
+                    safe_report = false;
+                }
             }
             number_index += 1;
+            print("report safe = {}\n", .{safe_report});
         }
     }
+
+    print("safe reports = {any}\n", .{safe_reports.items});
     
     running_total = 0;
 }
