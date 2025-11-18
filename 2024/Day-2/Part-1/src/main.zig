@@ -5,12 +5,12 @@ var running_total: u32 = 0;
 var report: u32 = 1;
 var safe_report: bool = undefined;
 var number_index: u32 = 0;
+var prev_number: u32 = undefined;
 
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
     var arr_list: std.ArrayList(u32) = .empty;
     var safe_reports: std.ArrayList(u32) = .empty;
-    var prev_numbers: std.ArrayList(u32) = .empty;
     defer arr_list.deinit(allocator);
 
     var file_buffer: [50]u8 = undefined; //change to 15,000 on final run
@@ -31,40 +31,93 @@ pub fn main() !void {
             }
             running_total = 0;
             report += 1;
+            print("report = {}\n", .{report});
             
             if (safe_report) {
                 try safe_reports.append(allocator, report);
             }
         } else if (char >= '0' and char <= '9') {
-            const block = test_block: {
-                running_total *= 10;
-                running_total += char - 48;
-                try prev_numbers.append(allocator, running_total);
+            running_total *= 10;
+            running_total += char - 48;
+            
+            if (number_index > 0) {
+                prev_number = arr_list.items[number_index - 1];
 
-                if (number_index > 0) {
-                    const prev_number = prev_numbers.items[number_index - 1];
-                    print("previous numbers = {any}\n", .{prev_number});
+                if (prev_number != running_total) {
+                    print("prev number = {}\n", .{prev_number});
+                    //print("running_total = {}\n", .{running_total});
 
-                    if (prev_number != running_total) {
-                        if (prev_number + 3 == running_total or prev_number + 2 == running_total or prev_number + 1 == running_total) {
-                            print("safe increse\n", .{});
-                            safe_report = true;
-                        } else if ((prev_number > 3 and prev_number - 3 == running_total) or (prev_number > 2 and prev_number - 2 == running_total) or prev_number - 1 == running_total) {
-                            print("safe decrease\n", .{});
+                    if (prev_number > running_total) {
+                        if (prev_number - running_total == 1 or
+                            prev_number - running_total == 2 or
+                            prev_number - running_total == 3) {
+                            print("subtraction between 1 and 3\n", .{});
                             safe_report = true;
                         } else {
+                            print("subtraction not between 1 and 3\n", .{});
                             safe_report = false;
-                            break :test_block;
                         }
-                    } else {
-                        safe_report = false;
-                        break :test_block;
-                    }
+                    } else if (prev_number < running_total) {
+                        if (running_total - prev_number == 1 or
+                            running_total - prev_number == 2 or
+                            running_total - prev_number == 3) {
+                            print("addition between 1 and 3 \n", .{});
+                            safe_report = true;
+                        } else {
+                            print("addition not between 1 and 3\n", .{});
+                            safe_report = false;
+                        }
+                    } 
+                } else {
+                    print("previous number = running_total\n", .{});
+                    safe_report = false;
                 }
-                number_index += 1;
-                print("report safe = {}\n", .{safe_report});
-            };
-            print("block = {}\n", .{block});
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //if (number_index > 0) {
+            //    const prev_number = prev_numbers.items[number_index - 1];
+            //    print("previous numbers = {any}\n", .{prev_number});
+            //    print("running_total = {}\n", .{running_total});
+            //    if (prev_number != running_total) {
+            //        if (prev_number + 3 == running_total or prev_number + 2 == running_total or prev_number + 1 == running_total) {
+            //            print("safe increse\n", .{});
+            //            safe_report = true;
+            //        } else if ((prev_number > 3 and prev_number - 3 == running_total) or (prev_number > 2 and prev_number - 2 == running_total) or (prev_number > 1 and prev_number - 1 == running_total)) {
+            //            print("safe decrease\n", .{});
+            //            safe_report = true;
+            //        } else {
+            //            print("unsafe\n", .{});
+            //            safe_report = false;
+            //            break :test_block;
+            //        }
+            //    } else {
+            //        print("unsafe\n", .{});
+            //        safe_report = false;
+            //        break :test_block;
+            //    }
+            //}
+
+
+            number_index += 1;
+            print("report safe = {}\n", .{safe_report});
+            print("number index = {}\n", .{number_index});
         }
     }
 
