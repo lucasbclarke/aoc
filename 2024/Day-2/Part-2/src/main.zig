@@ -9,7 +9,7 @@ var prev_number: u32 = undefined;
 var new_line_started: bool = true;
 var direction: i8 =  0;
 var line_direction: i8 =  0;
-var unsafe_reports_num: u8 = 0;
+var report_safety_limit_reached: bool = false;
 
 pub fn main() !void {
     const allocator = std.heap.page_allocator;
@@ -17,7 +17,7 @@ pub fn main() !void {
     var safe_reports: std.ArrayList(u32) = .empty;
     defer arr_list.deinit(allocator);
 
-    var file_buffer: [80]u8 = undefined; //change to 15,000 on final run
+    var file_buffer: [100]u8 = undefined; //change to 15,000 on final run
     const file_reader = try std.fs.File.read(try std.fs.cwd().openFile("s", .{}), &file_buffer);
     _ = file_reader;
     for (file_buffer) |char| {
@@ -26,46 +26,47 @@ pub fn main() !void {
             
             if (running_total > 0) {
                 try arr_list.append(allocator, running_total);
+                //print("arry_list = {any}\n", .{arr_list.items});
             }
             if (!new_line_started) { 
                 if (number_index > 0) {
-                    safe_report &= numberComparison(running_total, prev_number, &line_direction, &unsafe_reports_num);
+                    safe_report &= numberComparison(running_total, prev_number, &line_direction);
                 } else {
                     print("previous number = running_total\n", .{});
                     safe_report &= false;
-                    unsafe_reports_num += 1;
-                    print("unsafe reports = {}\n", .{unsafe_reports_num});
                 }
             }
             print("report safe = {}\n", .{safe_report});
+            if (!safe_report and !report_safety_limit_reached) {
+                report_safety_limit_reached = true;
+                running_total = prev_number;
+                print("ignoring first unsafe report\n", .{});
+            } else {
+                prev_number = running_total;
+            }
             new_line_started = false;
-            prev_number = running_total;
             running_total = 0;
         } else if (char == '\n') {
             if (!new_line_started) { 
                 if (number_index > 0) {
-                    safe_report &= numberComparison(running_total, prev_number, &line_direction, &unsafe_reports_num);
+                    safe_report &= numberComparison(running_total, prev_number, &line_direction);
                 } else {
                     print("previous number = running_total\n", .{});
                     safe_report &= false;
-                    unsafe_reports_num += 1;
-                    print("unsafe reports = {}\n", .{unsafe_reports_num});
                 }
             }
             print("report safe = {}\n", .{safe_report});
 
             if (running_total > 0) {
                 try arr_list.append(allocator, running_total);
+                //print("arry_list = {any}\n", .{arr_list.items});
             }
             prev_number = running_total;
             running_total = 0;
             report += 1;
             print("report = {}\n", .{report});
             
-            //if (safe_report) {
-            //    try safe_reports.append(allocator, report);
-            //}
-            if (unsafe_reports_num <= 1) {
+            if (safe_report or !report_safety_limit_reached) {
                 try safe_reports.append(allocator, report);
             }
             prev_number = 0;
@@ -73,7 +74,7 @@ pub fn main() !void {
             new_line_started = true;
             print("new_line_started\n", .{});
             line_direction = 0;
-            unsafe_reports_num = 0;
+            report_safety_limit_reached = false;
         } else if (char >= '0' and char <= '9') {
             running_total *= 10;
             running_total += char - 48;
@@ -88,10 +89,10 @@ pub fn main() !void {
     running_total = 0;
 }
 
-pub fn numberComparison(runningTotal: u32, prevNumber: u32, lineDirection: *i8, unsafeReportsNum: *u8,) bool {
+pub fn numberComparison(runningTotal: u32, prevNumber: u32, lineDirection: *i8) bool {
     if (prevNumber != runningTotal) {
-        //print("prev number = {}\n", .{prevNumber});
-        //print("running_total = {}\n", .{runningTotal});
+        print("prev number = {}\n", .{prevNumber});
+        print("running_total = {}\n", .{runningTotal});
 
         if (prevNumber > runningTotal) {
             if (prevNumber - runningTotal == 1 or
@@ -104,14 +105,10 @@ pub fn numberComparison(runningTotal: u32, prevNumber: u32, lineDirection: *i8, 
                     lineDirection.* = direction;
                 } else {
                     safe_report &= false;
-                    unsafeReportsNum.* += 1;
-                    print("unsafe reports = {}\n", .{unsafe_reports_num});
                 }
             } else {
                 print("subtraction not between 1 and 3\n", .{});
                 safe_report &= false;
-                unsafeReportsNum.* += 1;
-                print("unsafe reports = {}\n", .{unsafe_reports_num});
             }
         } else if (prevNumber < runningTotal) {
             if (runningTotal - prevNumber == 1 or
@@ -125,20 +122,14 @@ pub fn numberComparison(runningTotal: u32, prevNumber: u32, lineDirection: *i8, 
                     lineDirection.* = direction;
                 } else {
                     safe_report &= false;
-                     unsafeReportsNum.* += 1;
-                    print("unsafe reports = {}\n", .{unsafe_reports_num});
                 }
             } else {
                 print("addition not between 1 and 3\n", .{});
                 safe_report &= false;
-                unsafeReportsNum.* += 1;
-                print("unsafe reports = {}\n", .{unsafe_reports_num});
             }
         } 
     } else {
         safe_report &= false;
-        unsafeReportsNum.* += 1;
-        print("unsafe reports = {}\n", .{unsafe_reports_num});
     }
     return safe_report;
 }
