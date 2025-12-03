@@ -17,8 +17,8 @@ pub fn main() !void {
     var safe_reports: std.ArrayList(u32) = .empty;
     defer arr_list.deinit(allocator);
 
-    var file_buffer: [100]u8 = undefined; //change to 15,000 on final run
-    const file_reader = try std.fs.File.read(try std.fs.cwd().openFile("s", .{}), &file_buffer);
+    var file_buffer: [150000]u8 = undefined; 
+    const file_reader = try std.fs.File.read(try std.fs.cwd().openFile("sample", .{}), &file_buffer);
     _ = file_reader;
     for (file_buffer) |char| {
         print("char = {c}\n", .{char});
@@ -40,6 +40,7 @@ pub fn main() !void {
             if (!safe_report and !report_safety_limit_reached) {
                 report_safety_limit_reached = true;
                 running_total = prev_number;
+                safe_report = true;
                 print("ignoring first unsafe report\n", .{});
             } else {
                 prev_number = running_total;
@@ -56,6 +57,12 @@ pub fn main() !void {
                 }
             }
             print("report safe = {}\n", .{safe_report});
+
+            if (!safe_report and !report_safety_limit_reached) {
+                report_safety_limit_reached = true;
+                safe_report = true;
+                print("ignoring first unsafe report\n", .{});
+            }
 
             if (running_total > 0) {
                 try arr_list.append(allocator, running_total);
